@@ -1,9 +1,9 @@
-function rectangularCollision({ rectangle1, rectangle2 }) {
+function rectangularCollision({ rect1, rect2 }) {
   return (
-    rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
-    rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
-    rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
-    rectangle1.position.y + rectangle1.height >= rectangle2.position.y
+    rect1.position.x + rect1.width >= rect2.position.x &&
+    rect1.position.x <= rect2.position.x + rect2.width &&
+    rect1.position.y <= rect2.position.y + rect2.height &&
+    rect1.position.y + rect1.height >= rect2.position.y
   )
 }
 
@@ -13,14 +13,14 @@ function checkForCharacterCollision({
   characterOffset = { x: 0, y: 0 }
 }) {
   player.interactionAsset = null
-  // monitor for character collision
+  //  character collision
   for (let i = 0; i < characters.length; i++) {
     const character = characters[i]
 
     if (
       rectangularCollision({
-        rectangle1: player,
-        rectangle2: {
+        rect1: player,
+        rect2: {
           ...character,
           position: {
             x: character.position.x + characterOffset.x,

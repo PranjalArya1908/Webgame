@@ -80,7 +80,7 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           animate: true,
-          dialogue: ['...', 'Hey mister, have you seen my Doggochu?']
+          dialogue: ['...', 'Hey mister, have you seen my Code?']
         })
       )
     }
@@ -98,7 +98,7 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 3,
-          dialogue: ['My bones hurt.']
+          dialogue: ['My Codes hurt.']
         })
       )
     }
@@ -231,8 +231,8 @@ function animate() {
           Math.max(player.position.y, battleZone.position.y))
       if (
         rectangularCollision({
-          rectangle1: player,
-          rectangle2: battleZone
+          rect1: player,
+          rect2: battleZone
         }) &&
         overlappingArea > (player.width * player.height) / 2 &&
         Math.random() < 0.01
@@ -271,7 +271,7 @@ function animate() {
     }
   }
 
-  if (keys.w.pressed && lastKey === 'w') {
+  if (keys.w.pressed) {
     player.animate = true
     player.image = player.sprites.up
 
@@ -285,8 +285,8 @@ function animate() {
       const boundary = boundaries[i]
       if (
         rectangularCollision({
-          rectangle1: player,
-          rectangle2: {
+          rect1: player,
+          rect2: {
             ...boundary,
             position: {
               x: boundary.position.x,
@@ -304,7 +304,7 @@ function animate() {
       movables.forEach((movable) => {
         movable.position.y += 3
       })
-  } else if (keys.a.pressed && lastKey === 'a') {
+  } else if (keys.a.pressed) {
     player.animate = true
     player.image = player.sprites.left
 
@@ -318,8 +318,8 @@ function animate() {
       const boundary = boundaries[i]
       if (
         rectangularCollision({
-          rectangle1: player,
-          rectangle2: {
+          rect1: player,
+          rect2: {
             ...boundary,
             position: {
               x: boundary.position.x + 3,
@@ -337,7 +337,7 @@ function animate() {
       movables.forEach((movable) => {
         movable.position.x += 3
       })
-  } else if (keys.s.pressed && lastKey === 's') {
+  } else if (keys.s.pressed) {
     player.animate = true
     player.image = player.sprites.down
 
@@ -351,8 +351,8 @@ function animate() {
       const boundary = boundaries[i]
       if (
         rectangularCollision({
-          rectangle1: player,
-          rectangle2: {
+          rect1: player,
+          rect2: {
             ...boundary,
             position: {
               x: boundary.position.x,
@@ -370,7 +370,7 @@ function animate() {
       movables.forEach((movable) => {
         movable.position.y -= 3
       })
-  } else if (keys.d.pressed && lastKey === 'd') {
+  } else if (keys.d.pressed) {
     player.animate = true
     player.image = player.sprites.right
 
@@ -384,8 +384,8 @@ function animate() {
       const boundary = boundaries[i]
       if (
         rectangularCollision({
-          rectangle1: player,
-          rectangle2: {
+          rect1: player,
+          rect2: {
             ...boundary,
             position: {
               x: boundary.position.x - 3,
@@ -405,7 +405,7 @@ function animate() {
       })
   }
 }
-// animate()
+animate()
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
@@ -442,20 +442,24 @@ window.addEventListener('keydown', (e) => {
       player.isInteracting = true
       break
     case 'w':
+    case 'ArrowUp':
       keys.w.pressed = true
       lastKey = 'w'
       break
     case 'a':
+    case 'ArrowLeft':
       keys.a.pressed = true
       lastKey = 'a'
       break
 
     case 's':
+    case 'ArrowDown':
       keys.s.pressed = true
       lastKey = 's'
       break
 
     case 'd':
+    case 'ArrowRight':
       keys.d.pressed = true
       lastKey = 'd'
       break
@@ -465,15 +469,19 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('keyup', (e) => {
   switch (e.key) {
     case 'w':
+    case 'ArrowUp':
       keys.w.pressed = false
       break
     case 'a':
+    case 'ArrowLeft':
       keys.a.pressed = false
       break
     case 's':
+    case 'ArrowDown':
       keys.s.pressed = false
       break
     case 'd':
+    case 'ArrowRight':
       keys.d.pressed = false
       break
   }

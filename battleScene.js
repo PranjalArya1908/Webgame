@@ -123,9 +123,8 @@ function animateBattle() {
   })
 }
 
-animate()
-// initBattle()
-// animateBattle()
+// Don't call animate() here - it's the main game loop
+// The battle scene will be initialized from index.js when a battle starts
 
 document.querySelector('#dialogueBox').addEventListener('click', (e) => {
   if (queue.length > 0) {
